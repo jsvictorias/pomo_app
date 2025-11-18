@@ -6,26 +6,12 @@ import {
   Image,
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
-import { useState } from "react";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useRef, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../src/types/navigation";
 import { TomatoTimer } from "../../src/components/tomato-timer";
-
-
-type TimerOption = {
-  minutes: number;
-  breakMinutes: number;
-};
-
-const TIMER_OPTIONS: TimerOption[] = [
-  { minutes: 25, breakMinutes: 5 },
-  { minutes: 30, breakMinutes: 10 },
-  { minutes: 50, breakMinutes: 20 },
-  { minutes: 1, breakMinutes: 1 },
-];
-
+import { Animated } from "react-native";
 
 export const Timer = () => {
 
@@ -33,6 +19,27 @@ export const Timer = () => {
   const navigation = useNavigation<NavigationProp>();
 
   const [title, setTitle] = useState("Começar");
+  const timerRef = useRef<any>(null);
+  
+  const fadeAnim = useRef(new Animated.Value(1)).current;
+
+  const animateTitle = (newText: string) => {
+    // fade-out
+    Animated.timing(fadeAnim, {
+      toValue: 0,
+      duration: 200,
+      useNativeDriver: true
+    }).start(() => {
+      setTitle(newText);
+
+      // fade-in
+      Animated.timing(fadeAnim, {
+        toValue: 1,
+        duration: 200,
+        useNativeDriver: true
+      }).start();
+    });
+  };
 
   return (
     <LinearGradient
@@ -41,10 +48,13 @@ export const Timer = () => {
       end={{ x: 0, y: 1 }}
       style={styles.container}
     >
-      <Text style={styles.title}>{title}</Text>
+      <Animated.Text style={[styles.title, { opacity: fadeAnim }]}>
+        {title}
+      </Animated.Text>
+
 
       <View style={styles.tomatotimerview}>
-        <TomatoTimer />
+        <TomatoTimer ref={timerRef} onChangeState={animateTitle} />
       </View>
 
       {/* Botão para ir pra biblioteca */}
@@ -73,6 +83,17 @@ export const Timer = () => {
           />
         </View>
       </View>
+      <TouchableOpacity 
+        style={styles.stop}
+        onPress={() => {
+          if (timerRef.current) {
+            timerRef.current.stopTimer();
+          }
+        }}
+      >
+        <Text style={styles.stoptext}>Parar</Text>
+      </TouchableOpacity>
+
     </LinearGradient>
   );
 };
@@ -125,6 +146,7 @@ const styles = StyleSheet.create({
     top: 260,
     width: "100%",
     alignItems: "center",
+    alignSelf: 'center',
   },
 
   arrow: {
@@ -217,4 +239,17 @@ textLib: {
   fontFamily: 'pixel',
   textAlign: 'center',
 },
+stop: {
+  position: "absolute",
+  bottom: 30,
+  alignSelf: "center",
+  flexDirection: "row",
+  alignItems: "center",
+},
+stoptext: {
+  fontFamily: 'pixel',
+  fontSize: 18,
+  color: '#AD2E2B',
+  fontWeight: 800,
+}
 });

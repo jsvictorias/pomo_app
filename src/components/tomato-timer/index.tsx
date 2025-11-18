@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, forwardRef, useImperativeHandle } from "react";
 import { View, TouchableOpacity, Image, Text } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { styles } from "./stylesTomato"
@@ -9,16 +9,21 @@ type TimerOption = {
   minutes: number;
   breakMinutes: number;
 };
+type TomatoTimerProps = {
+  onChangeState?: (text: string) => void;
+};
 
 const TIMER_OPTIONS: TimerOption[] = [
   { minutes: 25, breakMinutes: 5 },
   { minutes: 30, breakMinutes: 10 },
   { minutes: 50, breakMinutes: 20 },
+  { minutes: 1, breakMinutes: 1 },
 ];
 
 const DELAY_SECONDS = 5;
 
-export const TomatoTimer = () => {
+
+export const TomatoTimer = forwardRef<any, TomatoTimerProps>(({ onChangeState }, ref) => {
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const [index, setIndex] = useState(0);
@@ -26,6 +31,19 @@ export const TomatoTimer = () => {
   const [currentTimer, setCurrentTimer] = useState(TIMER_OPTIONS[0]);
   const [timeLeft, setTimeLeft] = useState(TIMER_OPTIONS[0].minutes * 60);
   const [isRunning, setIsRunning] = useState(false);
+
+  const stopTimer = () => {
+    clear();
+    setIsRunning(false);
+    setMode("focus");
+    setTimeLeft(currentTimer.minutes * 60);
+    console.log("TIMER PARADO MANUALMENTE");
+  };
+
+  useImperativeHandle(ref, () => ({
+    stopTimer
+  }));
+
 
   const formatTime = (sec: number) => {
     const m = Math.floor(sec / 60);
@@ -46,6 +64,7 @@ export const TomatoTimer = () => {
     clear();
     setIsRunning(true);
     setTimeLeft(currentTimer.minutes * 60);
+    onChangeState?.("Hora de Focar!");
 
     intervalRef.current = setInterval(() => {
       setTimeLeft((prev) => {
@@ -60,28 +79,32 @@ export const TomatoTimer = () => {
   };
 
   const handleFocusEnd = () => {
-    setIsRunning(true);
-    setMode("delay");
-    setTimeLeft(DELAY_SECONDS);
+  saveFocusTime(currentTimer.minutes * 60);  
+  setIsRunning(true);
+  setMode("delay");
+  setTimeLeft(DELAY_SECONDS);
+    onChangeState?.("Descanso iniciando...");
+    // setTimeLeft(0);
+  clear();
+  intervalRef.current = setInterval(() => {
+    setTimeLeft((prev) => {
+      if (prev <= 1) {
+        clear();
+        startBreak();
+        return 0;
+      }
+      return prev - 1;
+    });
+  }, 1000);
+};
 
-    clear();
-    intervalRef.current = setInterval(() => {
-      setTimeLeft((prev) => {
-        if (prev <= 1) {
-          clear();
-          startBreak();
-          return 0;
-        }
-        return prev - 1;
-      });
-    }, 1000);
-  };
 
   const startBreak = () => {
     clear();
     setMode("break");
     setIsRunning(true);
     setTimeLeft(currentTimer.breakMinutes * 60);
+    onChangeState?.("Descanso...");
 
     intervalRef.current = setInterval(() => {
       setTimeLeft((prev) => {
@@ -96,11 +119,14 @@ export const TomatoTimer = () => {
   };
 
   const handleBreakEnd = () => {
+    saveBreakTime(currentTimer.breakMinutes * 60); 
+
     clear();
     setIsRunning(false);
     setMode("focus");
     setTimeLeft(currentTimer.minutes * 60);
-  };
+    };
+
 
   const prev = () => {
     if (isRunning) return;
@@ -117,6 +143,27 @@ export const TomatoTimer = () => {
     setCurrentTimer(TIMER_OPTIONS[newIndex]);
     setTimeLeft(TIMER_OPTIONS[newIndex].minutes * 60);
   };
+
+  const saveFocusTime = async (seconds: number) => {
+        try {
+            const stored = await AsyncStorage.getItem("storedFocusSeconds");
+            const total = stored ? Number(stored) + seconds : seconds;
+            await AsyncStorage.setItem("storedFocusSeconds", total.toString());
+        } catch (e) {
+            console.log("Erro ao salvar foco:", e);
+        }
+   };
+
+    const saveBreakTime = async (seconds: number) => {
+        try {
+            const stored = await AsyncStorage.getItem("storedBreakSeconds");
+            const total = stored ? Number(stored) + seconds : seconds;
+            await AsyncStorage.setItem("storedBreakSeconds", total.toString());
+        } catch (e) {
+            console.log("Erro ao salvar descanso:", e);
+        }
+    };
+
 
   useEffect(() => {
     return () => {
@@ -155,6 +202,7 @@ export const TomatoTimer = () => {
       <TouchableOpacity disabled={isRunning} onPress={next}>
         <Image source={require("../../../assets/setadireita.png")} />
       </TouchableOpacity>
+
     </View>
   );
-};
+});
