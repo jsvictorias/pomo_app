@@ -11,11 +11,16 @@ import { LinearGradient } from "expo-linear-gradient";
 import { useFonts } from "expo-font";
 import { useEffect, useRef, useState } from "react";
 import { Easing } from "react-native-reanimated";
+import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import { RootStackParamList } from "../../../src/types/navigation";
 
 const { width, height } = Dimensions.get("window");
 const CLOUD_COUNT = 5; // REDUZIDO para 5 nuvens
 
 export const HomeDay = () => {
+    type NavigationProp = NativeStackNavigationProp<RootStackParamList>;
+  const navigation = useNavigation<NavigationProp>();
   const [fontsLoaded] = useFonts({
     Coiny: require("../../../fonts/Coiny.ttf"),
   });
@@ -96,7 +101,7 @@ export const HomeDay = () => {
 
   return (
     <LinearGradient
-      colors={["#4904AA", "#EEF5F9"]}
+      colors={["#189DF0", "#EEF5F9"]}
       start={{ x: 0, y: 0 }}
       end={{ x: 0, y: 1 }}
       style={styles.container}
@@ -134,6 +139,7 @@ export const HomeDay = () => {
           onPressIn={() => {
             animPressIn(scaleStart);
             setIsStartPressed(true);
+            navigation.navigate('Timer');
           }}
           onPressOut={() => {
             animPressOut(scaleStart);
@@ -159,6 +165,7 @@ export const HomeDay = () => {
           onPressIn={() => {
             animPressIn(scaleLibrary);
             setIsLibraryPressed(true);
+            navigation.navigate('Library');
           }}
           onPressOut={() => {
             animPressOut(scaleLibrary);

@@ -3,7 +3,8 @@ import { RootStackParamList } from "../types/navigation";
 
 import { SplashScreen } from "../../pages/splashscreen";
 import { HomeDay } from "../../pages/home/day";
-import { HomeNight } from "../../pages/home/night";
+import { Timer } from "../../pages/timer";
+import { Library } from "../../pages/library";  
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -23,8 +24,14 @@ export default function Routes() {
       />
 
       <Stack.Screen
-        name="HomeNight"
-        component={HomeNight}
+        name="Timer"
+        component={Timer}
+        options={{ headerShown: false }}
+      />
+
+      <Stack.Screen
+        name="Library"
+        component={Library}
         options={{ headerShown: false }}
       />
     </Stack.Navigator>

@@ -15,7 +15,7 @@ export const SplashScreen = () => {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      navigation.replace("HomeNight");
+      navigation.replace("HomeDay");
     }, 5000);
 
     return () => clearTimeout(timer);
