@@ -39,16 +39,14 @@ export const styles = StyleSheet.create({
   },
 
   book: {
-    width: width * 1,    
+    width: width,
     height: 360,
     resizeMode: "contain",
   },
 
-  /* ========= Textos dentro do livro ========= */
-
   leftTitle: {
     position: "absolute",
-    top: "30%",           
+    top: "30%",
     left: "15%",
     textAlign: "center",
     fontFamily: "pixel",
@@ -67,7 +65,7 @@ export const styles = StyleSheet.create({
 
   rightTitle: {
     position: "absolute",
-    top: "30%", 
+    top: "30%",
     right: "20%",
     textAlign: "center",
     fontFamily: "pixel",
@@ -86,18 +84,16 @@ export const styles = StyleSheet.create({
 
   dayLabel: {
     position: "absolute",
-    bottom: "30%",        
+    bottom: "30%",
     right: "17%",
     fontFamily: "pixel",
     fontSize: 18,
     color: "#000",
   },
 
-  /* ========= botão + plantinhas ========= */
-
   libContainer: {
     position: "absolute",
-    bottom: -40,              
+    bottom: -40,
     alignSelf: "center",
     flexDirection: "row",
     alignItems: "center",

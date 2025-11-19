@@ -1,10 +1,10 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../types/navigation";
 
-import { SplashScreen } from "../../pages/splashscreen";
-import { HomeDay } from "../../pages/home/day";
-import { Timer } from "../../pages/timer";
-import { Library } from "../../pages/library";  
+import { SplashScreen } from "../../srcV/pages/splashscreen/SplashScreen";
+import { Home } from "../../srcV/pages/home/Home";
+import { Timer } from "../../srcV/pages/timer/Timer";
+import { Library } from "../../srcV/pages/library/Library"; 
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -19,7 +19,7 @@ export default function Routes() {
 
       <Stack.Screen
         name="HomeDay"
-        component={HomeDay}
+        component={Home}
         options={{ headerShown: false }}
       />
 
