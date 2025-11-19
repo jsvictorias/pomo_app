@@ -10,8 +10,8 @@ import { styles } from "./Home.styles";
 import { useHomeViewModel } from "./Home.viewmodel";
 
 /**
- * Página Principal
- * @returns UI da Página Principal
+ * View da Página Principal
+ * @returns UI da Página Principal, com animação das nuvens e navegação para as outras páginas
  */
 export const Home = () => {
   const {
@@ -39,7 +39,7 @@ export const Home = () => {
       end={{ x: 0, y: 1 }}
       style={styles.container}
     >
-      {/* NUVENS */}
+      {/* ANIMAÇÃO NUVENS */}
       {cloudAnims.map((anim, i) => {
         const config = cloudConfigs[i];
         return (
@@ -63,9 +63,11 @@ export const Home = () => {
       {/* TÍTULO */}
       <Text style={styles.title}>Pomo</Text>
 
-      {/* BOTÕES */}
+      {/* BOTÕES DE NAVEGAÇÃO */}
       <View style={styles.buttonRow}>
+
         {/* TIMER */}
+
         <TouchableOpacity
           activeOpacity={1}
           onPressIn={() => {
@@ -92,6 +94,7 @@ export const Home = () => {
         </TouchableOpacity>
 
         {/* BIBLIOTECA */}
+        
         <TouchableOpacity
           activeOpacity={1}
           onPressIn={() => {

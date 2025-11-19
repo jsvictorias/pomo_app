@@ -21,7 +21,7 @@ export function useHomeViewModel() {
     Coiny: require("../../../fonts/Coiny.ttf"),
   });
 
-  // Configuração das nuvens
+  // funções nuvens
   const cloudConfigs = useRef(
     Array.from({ length: CLOUD_COUNT }, () => ({
       size: Math.random() * 80 + 400,
@@ -35,7 +35,7 @@ export function useHomeViewModel() {
     Array.from({ length: CLOUD_COUNT }, () => new Animated.Value(0))
   ).current;
 
-  // Botões animados + estados de pressão
+  // Botões animados
   const scaleStart = useRef(new Animated.Value(1)).current;
   const scaleLibrary = useRef(new Animated.Value(1)).current;
 
@@ -60,7 +60,7 @@ export function useHomeViewModel() {
     }).start();
   };
 
-  // Iniciar animação das nuvens
+  // Animação das nuvens
   useEffect(() => {
     const startAnimations = () => {
       cloudAnims.forEach((anim, i) => {
