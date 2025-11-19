@@ -16,7 +16,7 @@ export const SplashScreen = () => {
       <Text style={styles.title}>pomo</Text>
 
       <Image
-        source={require("../../assets/pomo.png")}
+        source={require("../../../assets/pomo.png")}
         style={styles.image}
       />
     </View>

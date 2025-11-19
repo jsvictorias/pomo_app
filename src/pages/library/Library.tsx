@@ -23,7 +23,7 @@ export const Library = () => {
       <View style={styles.bookcontainer}>
 
         <Image 
-          source={require("../../assets/livrodereceitas.png")} 
+          source={require("../../../assets/livrodereceitas.png")} 
           style={styles.book}
         />
 
@@ -43,7 +43,7 @@ export const Library = () => {
           
           <View style={styles.plantsContainer}>
             <Image
-              source={require("../../assets/plantinha.png")}
+              source={require("../../../assets/plantinha.png")}
               style={styles.plantImage}
             />
           </View>
@@ -54,7 +54,7 @@ export const Library = () => {
 
           <View style={styles.plantsContainer}>
             <Image
-              source={require("../../assets/plantinha.png")}
+              source={require("../../../assets/plantinha.png")}
               style={styles.plantImage}
             />
           </View>

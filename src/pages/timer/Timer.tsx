@@ -43,7 +43,7 @@ export const Timer = () => {
       <View style={styles.libContainer}>
         <View style={styles.plantsContainer}>
           <Image
-            source={require("../../assets/plantinha.png")}
+            source={require("../../../assets/plantinha.png")}
             style={styles.plantImage}
           />
         </View>
@@ -54,7 +54,7 @@ export const Timer = () => {
 
         <View style={styles.plantsContainer}>
           <Image
-            source={require("../../assets/plantinha.png")}
+            source={require("../../../assets/plantinha.png")}
             style={styles.plantImage}
           />
         </View>

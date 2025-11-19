@@ -11,8 +11,7 @@ export function useTomatoTimerViewModel(onChangeState?: (text: string) => void) 
   const TIMER_OPTIONS: TimerOption[] = [
     { minutes: 25, breakMinutes: 5 },
     { minutes: 30, breakMinutes: 10 },
-    { minutes: 50, breakMinutes: 20 },
-    { minutes: 1, breakMinutes: 1 },
+    { minutes: 50, breakMinutes: 20 }
   ];
 
   const DELAY_SECONDS = 5;
