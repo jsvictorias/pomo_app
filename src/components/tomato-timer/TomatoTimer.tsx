@@ -2,10 +2,7 @@ import React, { forwardRef, useImperativeHandle } from "react";
 import { View, TouchableOpacity, Image, Text } from "react-native";
 import { styles } from "./TomatoTimer.styles";
 import { useTomatoTimerViewModel } from "./TomatoTimer.viewmodel";
-
-type TomatoTimerProps = {
-  onChangeState?: (text: string) => void;
-};
+import { TomatoTimerProps } from "./TomatoTimer.types";
 
 /**
  * View - TomatoTimer

@@ -1,10 +1,10 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../types/navigation";
 
-import { SplashScreen } from "../../srcV/pages/splashscreen/SplashScreen";
-import { Home } from "../../srcV/pages/home/Home";
-import { Timer } from "../../srcV/pages/timer/Timer";
-import { Library } from "../../srcV/pages/library/Library"; 
+import { SplashScreen } from "../src/pages/splashscreen/SplashScreen";
+import { Home } from "../src/pages/home/Home";
+import { Library } from "../src/pages/library/Library";
+import { Timer } from "../src/pages/timer/Timer";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 

@@ -1,16 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-
-export type TimerMode = "focus" | "delay" | "break";
-
-type TimerOption = {
-  minutes: number;
-  breakMinutes: number;
-};
+import { TimerMode, TimerOption } from "./TomatoTimer.types";
 
 /**
  * Model - Relógio
- * @param onChangeState minutos de foco e de descanso
  * @returns navegação entre as opções, lógica do tempo de descanso e de foco, lógica de start e de stop
  */
 
