@@ -46,8 +46,8 @@ export const styles = StyleSheet.create({
 
   leftTitle: {
     position: "absolute",
-    top: "30%",
-    left: "15%",
+    top: "20%",
+    left: '16%',
     textAlign: "center",
     fontFamily: "pixel",
     fontSize: 20,
@@ -57,7 +57,7 @@ export const styles = StyleSheet.create({
   leftHours: {
     position: "absolute",
     top: "45%",
-    left: "13%",
+    left: "16%",
     fontFamily: "Coiny",
     fontSize: 32,
     color: "#000",
