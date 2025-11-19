@@ -11,6 +11,7 @@ export const Library = () => {
     const navigation = useNavigation<NavigationProp>();
     const [focusSeconds, setFocusSeconds] = useState(0);
     const [breakSeconds, setBreakSeconds] = useState(0);
+    const [currentDate, setCurrentDate] = useState("");
 
     const loadTimes = async () => {
         try {
@@ -34,7 +35,21 @@ export const Library = () => {
     const m = Math.floor((sec % 3600) / 60);
         return `${String(h).padStart(2, "0")}h${String(m).padStart(2, "0")}`;
     };
+    const getCurrentDate = () => {
+        const today = new Date();
+        const day = String(today.getDate()).padStart(2, "0");
+        const month = String(today.getMonth() + 1).padStart(2, "0");
+        const year = today.getFullYear();
 
+        return `${day}/${month}/${year}`;
+    };
+
+    useEffect(() => {
+        loadTimes();
+
+        const date = getCurrentDate();
+        setCurrentDate(date);
+    }, []);
 
     return(
         <View style={styles.container}>
@@ -61,7 +76,7 @@ export const Library = () => {
 
                 {/* ----------- DIA ----------- */}
 
-                <Text style={styles.dayLabel}>dia: 18/11/2025</Text>
+                <Text style={styles.dayLabel}>dia: {currentDate}</Text>
 
                 <View style={styles.libContainer}>
                     {/* 3 plantinhas na esquerda */}
