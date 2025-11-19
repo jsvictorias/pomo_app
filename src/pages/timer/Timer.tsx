@@ -10,6 +10,10 @@ import { styles } from "./Timer.styles";
 import { useTimerViewModel } from "./Timer.viewmodel";
 import { TomatoTimer } from "../../components/tomato-timer/TomatoTimer";
 
+/**
+ * View página do cronômetro
+ * @returns página do timer com navegação para a biblioteca + componentes de título e cronometro
+ */
 export const Timer = () => {
   const {
     title,

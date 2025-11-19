@@ -5,7 +5,7 @@ import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../../types/navigation";
 
 /**
- * Hook para Página Library
+ * Model para Página Library
  * @returns Funções de lógica de navegação e pegar data do dispositivo do usuário
  */
 

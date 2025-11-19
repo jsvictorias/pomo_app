@@ -4,7 +4,7 @@ import { useSplashViewModel } from "./SplashScreen.viewmodel";
 
 /**
  * View da página SplashScreen
- * @returns UI da página
+ * @returns nome do projeto e favicon 
  */
 export const SplashScreen = () => {
   const { fontsLoaded } = useSplashViewModel();

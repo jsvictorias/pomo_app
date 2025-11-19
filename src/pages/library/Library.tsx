@@ -3,8 +3,8 @@ import { styles } from "./Library.styles";
 import { useLibraryViewModel } from "./Library.viewmodel";
 
 /**
- * Página da Biblioteca 
- * @returns UI da página
+ * View da Página da Biblioteca 
+ * @returns Livro de receitas com as horas de descanso e de foco e data atual do usuário.
  */
 export const Library = () => {
   const {
