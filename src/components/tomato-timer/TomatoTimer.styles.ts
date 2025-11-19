@@ -23,7 +23,7 @@ export const styles = StyleSheet.create({
     position: "absolute",
     fontSize: 30,
     color: "black",
-    fontFamily: 'Coiny',
+    fontFamily: "Coiny",
     marginTop: 30,
   },
   breakText: {

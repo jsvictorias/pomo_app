@@ -4,7 +4,7 @@ import { Animated, Dimensions } from "react-native";
 import { Easing } from "react-native-reanimated";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { RootStackParamList } from "../../../src/types/navigation";
+import { RootStackParamList } from "../../../types/navigation";
 
 const { width, height } = Dimensions.get("window");
 const CLOUD_COUNT = 5;

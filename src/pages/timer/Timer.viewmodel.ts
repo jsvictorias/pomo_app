@@ -4,7 +4,7 @@ import { useRef, useState } from "react";
 import { Animated } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { RootStackParamList } from "../../../src/types/navigation";
+import { RootStackParamList } from "../../../types/navigation";
 
 /**
  * Model - Timer

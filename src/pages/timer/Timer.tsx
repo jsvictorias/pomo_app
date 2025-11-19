@@ -8,7 +8,7 @@ import {
 import { LinearGradient } from "expo-linear-gradient";
 import { styles } from "./Timer.styles";
 import { useTimerViewModel } from "./Timer.viewmodel";
-import { TomatoTimer } from "../../../src/components/tomato-timer";
+import { TomatoTimer } from "../../components/tomato-timer/TomatoTimer";
 
 export const Timer = () => {
   const {
